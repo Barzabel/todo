@@ -4,6 +4,8 @@ secrets.py
 *.log
 *.pot
 *.pyc
-__pycache__/**
-static/**
-migrations/**
+__pycache__/
+static/
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
