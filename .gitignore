@@ -4,6 +4,6 @@ secrets.py
 *.log
 *.pot
 *.pyc
-__pycache__/
-static/
-migrations/
+__pycache__/**
+static/**
+migrations/**
