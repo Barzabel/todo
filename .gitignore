@@ -1,0 +1,8 @@
+db.sqlite3
+poetry.lock
+secrets.py
+*.log
+*.pot
+*.pyc
+__pycache__/
+static/
