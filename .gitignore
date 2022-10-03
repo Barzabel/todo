@@ -6,3 +6,4 @@ secrets.py
 *.pyc
 __pycache__/
 static/
+migrations/
