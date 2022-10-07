@@ -1,0 +1,16 @@
+{% extends "main_todo/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<h3>Вход</h3>
+<h3>{{ error }}</h3>
+
+<form method="POST">
+	{% csrf_token%}
+	{{ form.as_p }}
+	<button type="submit" >Войти</button>
+</form>
+
+{% endblock %}
