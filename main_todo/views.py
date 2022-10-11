@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User 
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from .forms import TodoForm
+from .models import Todo
 
 
 def sing_up(request):
@@ -25,9 +27,9 @@ def sing_up(request):
 
         return render(request, 'main_todo/sing_up.html', {'form':UserCreationForm() })
 
-
 def current_todo(request):
-    return render(request, 'main_todo/current_todo.html', {})
+    todos = Todo.objects.filter(user=request.user, date_done__isnull=True)
+    return render(request, 'main_todo/current_todo.html', {'todos':todos})
 
 def log_out(request):
     if request.method == 'POST':
@@ -46,6 +48,19 @@ def log_in(request):
 
     else:
         return render(request, 'main_todo/log_in.html', {'form':AuthenticationForm()})
+
+def createtodo(request):
+    if request.method == 'GET':
+        return render(request, 'main_todo/createtodo.html', {'form':TodoForm() })
+    else:
+        try:
+            form = TodoForm(request.POST)
+            newtodo = form.save(commit=False)
+            newtodo.user = request.user
+            newtodo.save()
+            return redirect('current_todo')
+        except ValueError:
+            return render(request, 'main_todo/createtodo.html', {'form':TodoForm(), 'error': "не верные данные, или пользователь не авторизован!!!" })
 
 
 def home(request):

@@ -5,6 +5,10 @@
 
 {% block content %}
 
-content
+<ul>
+	{% for todo in todos %}
+	<li> {{ todo.titel}} </li>
+	{% endfor %}
+</ul>
 
 {% endblock %}
