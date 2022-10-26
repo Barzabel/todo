@@ -1,0 +1,29 @@
+{% extends "main_todo/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+<h3>{{ error }}</h3>
+
+{{ todo.titel }}<br>
+
+<form method="POST">
+	{% csrf_token%}
+	{{ form.as_p }}
+	<button type="submit" >Изменить</button>
+</form>
+
+<form method="POST" action="{% url 'completetodo' todo.id %}">
+	{% csrf_token%}
+	<button type="submit" >Исполнить</button>
+</form>
+<form method="POST" action="{% url 'deletetodo' todo.id %}">
+	{% csrf_token%}
+	<button type="submit" >Удалить запись</button>
+</form>
+
+
+
+{% endblock %}

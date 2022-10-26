@@ -7,7 +7,13 @@
 
 <ul>
 	{% for todo in todos %}
-	<li> {{ todo.titel}} </li>
+	<li> <a href="{% url 'viewtodo' todo.id %}">
+		{% if todo.imported %} 
+			<b>{{ todo.titel}}</b>
+		{% else %}
+		    {{ todo.titel}}
+		{% endif %}
+	</a> </li>
 	{% endfor %}
 </ul>
 
