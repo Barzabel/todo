@@ -1,0 +1,22 @@
+
+{% extends "main_todo/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<ul>
+	{% for todo in todos %}
+	<li> <a href="{% url 'viewtodo' todo.id %}">
+		{% if todo.imported %} 
+			<b>{{ todo.titel}}</b>
+		{% else %}
+		    {{ todo.titel}}
+		{% endif %}
+		{{ todo.date_done|date:'M j Y H:i' }}
+	</a> </li>
+
+	{% endfor %}
+</ul>
+
+{% endblock %}

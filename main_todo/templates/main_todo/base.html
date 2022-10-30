@@ -17,21 +17,30 @@
     <ul class="navbar-nav">
       
       	{% if user.is_authenticated %}
-      	<li class="nav-item active"><span class="nav-link">Вы зашли за: {{ user.username }}</span></li>
-      	<li class="nav-item active">
-      	<form action="{% url 'log_out' %}" method="POST">
-      		{% csrf_token%}
-			<button type="submit" lass="nav-link" >Выйти</button>
-      	</form>
-      	
-      	</li>
+	      	<li class="nav-item active"><span class="nav-link">Вы зашли за: {{ user.username }}</span></li>
+	      	
+	      	<li class="nav-item active">
+	      		<a class="nav-link" href="{% url 'completed_todo' %}">Выполнененые задачи<span class="sr-only">(current)</span></a>
+	      	</li>
+	      	<li class="nav-item active">
+	      		<a class="nav-link" href="{% url 'current_todo' %}">Текущие задачи<span class="sr-only">(current)</span></a>
+	      	</li>
+	      	<li class="nav-item active">
+	      		<a class="nav-link" href="{% url 'createtodo' %}">создать новую задачу<span class="sr-only">(current)</span></a>
+	      	</li>	   
+	      	<li class="nav-item active">
+	      		<form action="{% url 'log_out' %}" method="POST">
+	      			{% csrf_token%}
+							<button type="submit" lass="nav-link" >Выйти</button>
+	      		</form>
+	      	</li>   	
       	{% else %}
-      	<li class="nav-item active">
-      		<a class="nav-link" href="{% url 'log_in' %}">Войи<span class="sr-only">(current)</span></a>
-      	</li>
-		<li class="nav-item active">
-      		<a class="nav-link" href="{% url 'sing_up' %}">зарегистрироваться<span class="sr-only">(current)</span></a>
-      	</li>
+	      	<li class="nav-item active">
+	      		<a class="nav-link" href="{% url 'log_in' %}">Войи<span class="sr-only">(current)</span></a>
+	      	</li>
+					<li class="nav-item active">
+	      		<a class="nav-link" href="{% url 'sing_up' %}">зарегистрироваться<span class="sr-only">(current)</span></a>
+	      	</li>
       	{% endif %}
        
 
