@@ -4,19 +4,18 @@
 {% load static %}
 
 {% block content %}
-
-<ul>
-	{% for todo in todos %}
-	<li> <a href="{% url 'viewtodo' todo.id %}">
-		{% if todo.imported %} 
-			<b>{{ todo.titel}}</b>
-		{% else %}
-		    {{ todo.titel}}
-		{% endif %}
-		{{ todo.date_done|date:'M j Y H:i' }}
-	</a> </li>
-
-	{% endfor %}
-</ul>
-
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <h1>Выполненые задачи</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10">
+            <div class="list-group">
+                {% for todo in todos %}
+                    <a href="{% url 'viewtodo' todo.id %}" class="list-group-item list-group-item-action{% if todo.imported %} list-group-item-danger{% endif %}"><b>{{ todo.titel }}</b> - Выполнено {{ todo.date_done|date:'M j Y H:i' }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
